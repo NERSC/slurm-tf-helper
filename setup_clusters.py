@@ -53,7 +53,7 @@ def get_task_index(proc_id, job_name, num_ps):
     
     if job_name == "ps":
         task_index = proc_id
-    elif job_name == "worker"
+    elif job_name == "worker":
         #expects a task_index for workers that starts at 0
         task_index = proc_id - num_ps
     return task_index
@@ -105,7 +105,13 @@ def expand_nodelist(node_string):
     return nodes
 
 if __name__ == "__main__":
-    node_string = "nid22[8,11-99,101-120]"
-    nodes = expand_nodelist(node_string)
-    print nodes
+    cluster, server, task_index, num_tasks, job_name = setup_slurm_cluster(num_ps=1)
+
+
+
+
+
+
+
+
 
