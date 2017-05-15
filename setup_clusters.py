@@ -1,21 +1,28 @@
 
+# coding: utf-8
 
+# In[1]:
 
 import tensorflow as tf
 
 
+# In[2]:
 
 import sys
+from nbfinder import NotebookFinder
+sys.meta_path.append(NotebookFinder())
 import os
 
 
+# In[5]:
 
 """Works for tensorflow 0.12 for now"""
 def setup_slurm_cluster(num_ps=1):
     all_nodes = get_all_nodes()
+
     port = get_allowed_port()
     
-    tf_hostlist = [ ("%s:%i" % (node, port)) for node in all_nodes ] 
+    hostlist = [ ("%s:%i" % (node, port)) for node in all_nodes ] 
     ps_hosts, worker_hosts = get_parameter_server_and_worker_hosts(hostlist, num_ps=num_ps)
 
 
@@ -31,7 +38,7 @@ def setup_slurm_cluster(num_ps=1):
 
     server = make_server(cluster_spec, job_name, task_index)
     
-    return cluster, server, task_index, num_tasks, job_name
+    return cluster_spec, server, task_index, num_tasks, job_name
     
 
 def make_server(cluster_spec, job_name, task_index):
@@ -108,10 +115,12 @@ if __name__ == "__main__":
     cluster, server, task_index, num_tasks, job_name = setup_slurm_cluster(num_ps=1)
 
 
+# In[2]:
+
+#! jupyter nbconvert --to script setup_clusters.ipynb
 
 
-
-
+# In[ ]:
 
 
 
