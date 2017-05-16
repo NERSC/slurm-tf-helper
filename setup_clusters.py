@@ -9,8 +9,7 @@ import tensorflow as tf
 # In[2]:
 
 import sys
-from nbfinder import NotebookFinder
-sys.meta_path.append(NotebookFinder())
+
 import os
 
 
